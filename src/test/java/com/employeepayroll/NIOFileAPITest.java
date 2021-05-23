@@ -54,4 +54,14 @@ public class NIOFileAPITest {
                                                   path.toString().startsWith("temp"))
                 .forEach(System.out::println);
     }
+    /**
+     * @description Create Method for Watching the Service to Watch Particular directory along with
+     *               all files and sub Directories
+     */
+    @Test
+    public void givenADirectoryWhenMatchedListsAllTheActivities() throws IOException {
+        Path dir = Paths.get(HOME +"/"+ PLAY_WITH_NIO);
+        Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+        new Java8WatchServiceExample(dir).processEvents();
+    }
 }
