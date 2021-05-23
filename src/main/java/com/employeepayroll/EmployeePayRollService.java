@@ -22,7 +22,6 @@ public class EmployeePayRollService {
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayRollService.readEmployeePayRollData(consoleInputReader);
         employeePayRollService.writeEmployeePayuRollData();
-
     }
 
     /**
