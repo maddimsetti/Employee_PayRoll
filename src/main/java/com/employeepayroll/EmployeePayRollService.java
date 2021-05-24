@@ -20,6 +20,7 @@ public class EmployeePayRollService {
     }
 
     public EmployeePayRollService () { }
+
     /**
      * @description create main Method for Printing the Welcome Message to Employee PaYRoll Service
      * param: Create an Employee PayRoll Service to Read and Write Employee PayRoll to a Console
@@ -36,7 +37,7 @@ public class EmployeePayRollService {
      * @description Create Method for Reading the Employee PayRoll Data From Console
      *
      */
-    private void readEmployeePayRollData(Scanner consoleInputReader) {
+    public void readEmployeePayRollData(Scanner consoleInputReader) {
         System.out.println("Enter The Employee ID: ");
         int id = consoleInputReader.nextInt();
         System.out.println("Enter The Employee Name: ");
@@ -76,6 +77,16 @@ public class EmployeePayRollService {
             return new EmployeePayRollFileIOService().countEntries();
         }
         return 0;
+    }
+
+    /**
+     * @description create Method for Reading the Data From the List, To Read Files in console
+     *
+     */
+    public List<EmployeePayRollData> readEmployeePayRollData (IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            this.employeePayRollList = new EmployeePayRollFileIOService().readData();
+        return employeePayRollList;
     }
 
 }

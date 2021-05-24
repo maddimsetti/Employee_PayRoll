@@ -27,4 +27,16 @@ public class EmployeePayRollServiceTest {
         long entries = employeePayRollService.countEntries(EmployeePayRollService.IOService.FILE_IO);
         Assertions.assertEquals(3,entries);
     }
+
+    /**
+     * @description create Method for Testing the 3 Employees When Reading Files should match the Employee Entries
+     *
+     */
+    @Test
+    public void given3EmployeeWhenReadingFromFilesShouldMatchEmployeeEntries() {
+        EmployeePayRollService employeePayRollService = new EmployeePayRollService();
+        employeePayRollService.readEmployeePayRollData(EmployeePayRollService.IOService.FILE_IO);
+        long entries = employeePayRollService.countEntries(EmployeePayRollService.IOService.FILE_IO);
+        Assertions.assertEquals(3,entries);
+    }
 }
