@@ -23,6 +23,6 @@ public class EmployeePayRollData {
     //Printing the Result OverRide
     @Override
     public String toString () {
-        return "Id = " +id+ "\n Name = " +name+ "\n salary = " +salary;
+        return "Id = " +id+ " , Name = " +name+ " , salary = " +salary;
     }
 }

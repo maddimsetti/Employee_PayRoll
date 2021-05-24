@@ -9,19 +9,27 @@ import java.util.Scanner;
  *
  */
 public class EmployeePayRollService {
+    public enum IOService {
+        CONSOLE_IO,FILE_IO,DB_IO,REST_IO
+    }
     //variables
-    private final List<EmployeePayRollData> employeePayRollList = new ArrayList<>();
+    private static List<EmployeePayRollData> employeePayRollList;
 
+    public EmployeePayRollService(List<EmployeePayRollData> employeePayRollList) {
+        this.employeePayRollList = employeePayRollList;
+    }
+
+    public EmployeePayRollService () { }
     /**
      * @description create main Method for Printing the Welcome Message to Employee PaYRoll Service
      * param: Create an Employee PayRoll Service to Read and Write Employee PayRoll to a Console
      */
     public static void main(String[] args) {
         System.out.println("Welcome To Employee PayRoll Service Program");
-        EmployeePayRollService employeePayRollService = new EmployeePayRollService();
+        EmployeePayRollService employeePayRollService = new EmployeePayRollService(employeePayRollList);
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayRollService.readEmployeePayRollData(consoleInputReader);
-        employeePayRollService.writeEmployeePayuRollData();
+        employeePayRollService.writeEmployeePayuRollData(IOService.CONSOLE_IO);
     }
 
     /**
@@ -43,7 +51,31 @@ public class EmployeePayRollService {
      * @description create Method for Writing the Employee PayRoll Data In Console
      *
      */
-    private void writeEmployeePayuRollData() {
-        System.out.println("\n Writing Employee PayRoll Roaster to Console\n " +employeePayRollList);
+    public void writeEmployeePayuRollData(EmployeePayRollService.IOService ioService) {
+        if(ioService.equals(IOService.CONSOLE_IO))
+            System.out.println("\n Writing Employee PayRoll Roaster to Console\n " +employeePayRollList);
+        else if (ioService.equals(IOService.FILE_IO))
+            new EmployeePayRollFileIOService().writeData(employeePayRollList);
     }
+
+    /**
+     * @description create Method for Printing the Data of  the Employee PayRoll Data In Console
+     *
+     */
+    public void printData(IOService ioService) {
+        if(ioService.equals(IOService.FILE_IO))
+            new EmployeePayRollFileIOService().printData();
+    }
+
+    /**
+     * @description create Method for Counting the Entries of  the Employee PayRoll Data In Console
+     *
+     */
+    public long countEntries(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO)) {
+            return new EmployeePayRollFileIOService().countEntries();
+        }
+        return 0;
+    }
+
 }
