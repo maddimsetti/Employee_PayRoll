@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @description create class for Defining  the Employee PayRoll  service Testing
@@ -29,14 +30,13 @@ public class EmployeePayRollServiceTest {
     }
 
     /**
-     * @description create Method for Testing the 3 Employees When Reading Files should match the Employee Entries
+     * @description create Method for Testing the 3 Employees When Reading Files should match the Employee Count
      *
      */
     @Test
-    public void given3EmployeeWhenReadingFromFilesShouldMatchEmployeeEntries() {
+    public void givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount() {
         EmployeePayRollService employeePayRollService = new EmployeePayRollService();
-        employeePayRollService.readEmployeePayRollData(EmployeePayRollService.IOService.FILE_IO);
-        long entries = employeePayRollService.countEntries(EmployeePayRollService.IOService.FILE_IO);
-        Assertions.assertEquals(3,entries);
+        List<EmployeePayRollData> employeePayRollData = employeePayRollService.readEmployeePayRoll(EmployeePayRollService.IOService.DB_IO);
+        Assertions.assertEquals(3,employeePayRollData.size());
     }
 }

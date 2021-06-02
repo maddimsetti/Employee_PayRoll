@@ -49,6 +49,16 @@ public class EmployeePayRollService {
     }
 
     /**
+     * @description Create Method for Reading the Employee PayRoll Data From Mysql DataBase
+     *
+     */
+    public List<EmployeePayRollData> readEmployeePayRoll(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO))
+            this.employeePayRollList = new EmployeePayRollDBService().readData();
+            return this.employeePayRollList;
+    }
+
+    /**
      * @description create Method for Writing the Employee PayRoll Data In Console
      *
      */
@@ -88,5 +98,4 @@ public class EmployeePayRollService {
             this.employeePayRollList = new EmployeePayRollFileIOService().readData();
         return employeePayRollList;
     }
-
 }
